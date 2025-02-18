@@ -3,6 +3,7 @@ package com.taskly.controller;
 import com.taskly.entity.Task;
 import com.taskly.service.TaskService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -13,10 +14,10 @@ import java.util.List;
 public class TaskController {
     private final TaskService taskService;
 
-    @GetMapping("/testing")
-    public String testController() {
-        return "Working fine, Ready to go!";
-    }
+//    @GetMapping("/testing")
+//    public String testController() {
+//        return "Working fine, Ready to go!";
+//    }
 
     @GetMapping("/{userId}")
     public List<Task> getAllTasks(@PathVariable Long userId) {
