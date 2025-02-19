@@ -3,28 +3,23 @@ package com.taskly.controller;
 import com.taskly.entity.Task;
 import com.taskly.service.TaskService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/task")
 @RequiredArgsConstructor
 public class TaskController {
+
     private final TaskService taskService;
 
-//    @GetMapping("/testing")
-//    public String testController() {
-//        return "Working fine, Ready to go!";
-//    }
-
-    @GetMapping("/{userId}")
+    @GetMapping("/getAllTaskOfUser/{userId}")
     public List<Task> getAllTasks(@PathVariable Long userId) {
         return taskService.getAllTasks(userId);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/getTask/{id}")
     public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
         return taskService.getTaskById(id)
                 .map(ResponseEntity::ok)
@@ -36,7 +31,7 @@ public class TaskController {
         return taskService.createTask(task);
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/updateTask/{id}")
     public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task task) {
         try {
             return ResponseEntity.ok(taskService.updateTask(id, task));
@@ -45,7 +40,7 @@ public class TaskController {
         }
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/deleteTask/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
         taskService.deleteTask(id);
         return ResponseEntity.noContent().build();
