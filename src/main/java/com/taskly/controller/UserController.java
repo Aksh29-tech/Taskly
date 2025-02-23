@@ -26,9 +26,8 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
-    //For getting current user if logged in by form
-//    @GetMapping("/getLoggedInUser")
-//    public String getLoggedInUser(Principal principal) {
-//        return principal.getName();
-//    }
+    @GetMapping("/getLoggedInUser")
+    public String getLoggedInUser(Principal principal) {
+        return principal.getName();
+    }
 }
