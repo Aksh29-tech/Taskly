@@ -26,6 +26,12 @@ public class UserController {
                 .orElse(ResponseEntity.notFound().build());
     }
 
+    @GetMapping("/verify")
+    public String verifyUser(@RequestParam String token) {
+        userService.verifyUser(token);
+        return "Account successfully verified!";
+    }
+
     @GetMapping("/getLoggedInUser")
     public String getLoggedInUser(Principal principal) {
         return principal.getName();
